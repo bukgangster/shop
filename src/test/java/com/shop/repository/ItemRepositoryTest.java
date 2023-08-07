@@ -13,14 +13,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@TestPropertySource(locations="classpath:application-test.yml")
+//@SpringBootTest
+//@TestPropertySource(locations="classpath:application-test.yml")
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
 
-//    @Test
+    @Test
     @DisplayName("상품 저장 테스트")
     public void createItemTest(){
         Item item = new Item();
@@ -49,7 +49,7 @@ class ItemRepositoryTest {
         }
     }
 
-//    @Test
+    @Test
     @DisplayName("상품명 조회 테스트")
     public void findByItemNmTest(){
         this.createItemList();
