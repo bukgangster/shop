@@ -7,9 +7,14 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/shop?serverTimezone=UTC
-    username: root
-    password: 1234
+#    url: jdbc:mysql://localhost:3306/shop?serverTimezone=UTC
+#    username: root
+#    password: 1234
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    url: jdbc:log4jdbc:mysql://tivan-muscatdb.czwt78mf7f1j.ap-northeast-2.rds.amazonaws.com:3306/tivan-muscatdb?useSSL=false&autoReconnect=true
+    url: jdbc:mysql://tivan-muscatdb.czwt78mf7f1j.ap-northeast-2.rds.amazonaws.com:3306/tivan-muscatdb?useSSL=false&autoReconnect=true
+    username: admin
+    password: qlqjs0spro
   jpa:
     properties:
       hibernate:
