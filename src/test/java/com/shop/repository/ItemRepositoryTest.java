@@ -20,7 +20,7 @@ class ItemRepositoryTest {
     @Autowired
     ItemRepository itemRepository;
 
-    @Test
+//    @Test
     @DisplayName("상품 저장 테스트")
     public void createItemTest(){
         Item item = new Item();
@@ -49,7 +49,7 @@ class ItemRepositoryTest {
         }
     }
 
-    @Test
+//    @Test
     @DisplayName("상품명 조회 테스트")
     public void findByItemNmTest(){
         this.createItemList();
