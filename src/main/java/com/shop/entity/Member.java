@@ -39,7 +39,7 @@ public class Member {
 
         Member member = new Member();
         member.setName(memberFormDto.getName());
-        member.setEmail(memberFormDto.getEmial());
+        member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         // 4) 스프링 시큐리티 설정 클래스에 등록한 BCryptPasswordEncoder Bean을 파라미터로 넘겨서 비밀번호를 암호화합니다.
