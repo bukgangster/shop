@@ -3,6 +3,10 @@ package com.shop.service;
 import com.shop.entity.Member;
 import com.shop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional // 비지니스 로직을 담당하는 서비스 계층 클래스에 @Transactional 어노테이션을 선언합니다.
                // 로직을 처리하다가 에러가 발생했다면, 변경된 데이터를 로직을 수행하기 이전 상태로 콜백 시켜줍니다.
 @RequiredArgsConstructor // 2
-public class MemberService {
+public class MemberService implements UserDetailsService {
+    // 스프링 스큐리티에서 회원의 정보를 담기 위해서 사용하는 인터페이스 UserDetails입니다. 이 인터페이스를 직접 구현하거나 스프링 스큐리티에서 제공하는 User 클래스를 사용합니다.
 
     private final MemberRepository memberRepository; // 3
 
@@ -30,4 +35,19 @@ public class MemberService {
         }
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        Member member = memberRepository.findByEmail(email);
+
+        if(member == null){
+            throw new UsernameNotFoundException(email);
+        }
+
+        return User.builder()
+                .username(member.getEmail())
+                .password(member.getPassword())
+                .roles(member.getRole().toString())
+                .build();
+    }
 }
